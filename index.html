@@ -76,12 +76,21 @@
     <button type="button" id="subscribeButton" onclick="subscribe()">Subscribe</button>
   </form>
 
-  <script>
+<script>
     function subscribe() {
       var email = document.getElementById('emailInput').value;
       if (validateEmail(email)) {
         alert('Thank you for subscribing! We will keep you updated.');
-        // Add additional logic here, such as sending the email to a server
+
+        // Construct the mailto link
+        var subject = encodeURIComponent('Adding to SoulVest Newsletter');
+        var body = encodeURIComponent('Please add me to the SoulVest newsletter.');
+
+        // Replace the email address with the actual email
+        var mailtoLink = 'mailto:soulvest@soulvest.io?subject=' + subject + '&body=' + body;
+
+        // Open the default email client with the pre-filled email
+        window.location.href = mailtoLink;
       } else {
         alert('Please enter a valid email address.');
       }
@@ -94,6 +103,8 @@
     }
   </script>
 
+
+  
 </body>
 </html>
 
