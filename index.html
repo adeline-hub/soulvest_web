@@ -76,7 +76,12 @@
     <button type="button" id="subscribeButton" onclick="subscribe()">Subscribe</button>
   </form>
 
-  <script>
+<script>
+    var myElement = document.getElementById("myElement");
+myElement.addEventListener("contextmenu", function (event) {
+  event.preventDefault(); // Prevent the default right-click menu behavior
+});
+  
     function subscribe() {
       var email = document.getElementById('emailInput').value;
       if (validateEmail(email)) {
@@ -101,6 +106,7 @@
       var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
     }
+
   </script>
 
 
