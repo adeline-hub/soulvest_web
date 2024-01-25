@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Desert Drum</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🐪" />
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="74" class="key">
+      <kbd>U</kbd>
+      <span class="sound">S</span>
+    </div>
+    <div data-key="65" class="key">
+      <kbd>P</kbd>
+      <span class="sound">o</span>
+    </div>
+    <div data-key="87" class="key">
+      <kbd>D</kbd>
+      <span class="sound">u</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>A</kbd>
+      <span class="sound">l</span>
+    </div>
+    <div data-key="65" class="key">
+      <kbd>T</kbd>
+      <span class="sound">V</span>
+    </div>
+    <div data-key="82" class="key">
+      <kbd>I</kbd>
+      <span class="sound">e</span>
+    </div>
+    <div data-key="65" class="key">
+      <kbd>N</kbd>
+      <span class="sound">s</span>
+    </div>
+    <div data-key="84" class="key">
+      <kbd>G</kbd>
+      <span class="sound">t</span>
+
+  </div>
+    
+  <audio data-key="74" src="sounds/clap.wav"></audio>
+  <audio data-key="65" src="sounds/hihat.wav"></audio>
+  <audio data-key="87" src="sounds/kick.wav"></audio>
+  <audio data-key="72" src="sounds/openhat.wav"></audio>
+  <audio data-key="65" src="sounds/boom.wav"></audio>
+  <audio data-key="82" src="sounds/ride.wav"></audio>
+  <audio data-key="65" src="sounds/snare.wav"></audio>
+  <audio data-key="84" src="sounds/tom.wav"></audio>
+
+<script>
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    e.target.classList.remove('playing');
+  }
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+    if (!audio) return;
+
+    key.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  const keys = Array.from(document.querySelectorAll('.key'));
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+</script>
+
+
+</body>
+</html>
